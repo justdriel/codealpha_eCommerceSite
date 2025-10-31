@@ -1,0 +1,582 @@
+:root {
+  --color-primary: #d07b52;
+  --color-dark: #3b2f2f;
+  --color-light: #f6e7d7;
+  --color-bg: #ffffff;
+  --color-green: #0c3b2e;
+  --font-heading: "Bricolage Grotesque", sans-serif;
+  --font-body: "Manrope", sans-serif;
+  --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --transition-speed: 0.4s;
+  --radius-round: 30px;
+  --hover-glow: rgba(224, 122, 95, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-dark);
+  line-height: 1.6;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* --- Navigation & Header --- */
+#navbar {
+  background-color: blanchedalmond;
+  box-shadow: var(--shadow-soft);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  border-radius: 10px;
+  transition: background-color 420ms ease, box-shadow 320ms ease, color 320ms ease, padding 280ms ease;
+}
+
+#navbar.scrolled {
+  background-color: transparent;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+}
+
+.nav-left ul,
+.nav-right ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-left a,
+.nav-right a {
+  text-decoration: none;
+  color: var(--color-dark);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-left a:hover,
+.nav-right a:hover {
+  color: var(--color-primary);
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 2.5rem;
+  color: #d07b52;
+  text-align: center;
+  flex: 1;
+}
+
+.nav-left,
+.nav-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-right img {
+  width: 25px;
+}
+
+/* --- Hero Section --- */
+.hero {
+  background: url(/store/static/assets/mario-la-pergola-U6qZ22_YgoI-unsplash.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.hero-content {
+  text-align: center;
+  color: var(--color-light);
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid beige;
+  animation: blink 0.7s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.hero-content p {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+/* --- Buttons --- */
+.btn-primary {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  border: 1.5px solid var(--color-dark);
+  background: transparent;
+  color: var(--color-dark);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: var(--color-dark);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* --- Featured & Product Grids (Gallery) --- */
+.featured, .gallery {
+  text-align: center;
+  padding: 5rem 8%;
+  background-color: var(--color-bg);
+}
+
+.featured-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.featured h1, .gallery h1 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--color-dark);
+}
+
+.featured-grid, .product-grid, .row-1, .row-2, .row-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  justify-items: center;
+  align-items: start;
+  list-style: none; 
+}
+
+/* Product cards (Applies to all grids) */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  padding: 1.5rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+}
+
+.product-card a {
+    text-decoration: none;
+}
+
+.product-card img {
+  width: 100%;
+  max-height: 350px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.product-card p {
+  margin: 0.2rem 0;
+  font-size: 1rem;
+  color: var(--color-dark);
+}
+
+.product-card .price {
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-top: 0.5rem;
+  display: block;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Artisans Section --- */
+.artisans {
+  background: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.artisan-container {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 95vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  width: 95%;
+  padding: 8%;
+  border-radius: 10px;
+  transition: background-image 1s ease;
+}
+
+/* --- Story/About Page --- */
+.story-hero {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient( var(--color-primary), blanchedalmond );
+}
+
+.hero-overlay h1 {
+  font-size: 3rem;
+}
+.hero-overlay p {
+    opacity: 1 !important;
+}
+
+.sections {
+  padding: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.sections img {
+  transform: scale(0.9);
+  max-width: 45%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: var(--shadow-soft);
+}
+
+.sections p {
+  font-family: var(--font-heading);
+  font-size: x-large;
+  text-align: center;
+  max-width: 40%;
+}
+
+.story-1 {
+  background: linear-gradient( blanchedalmond, var(--color-primary));
+}
+
+.story-2 {
+  background: linear-gradient( var(--color-primary), blanchedalmond );
+}
+
+/* --- Footer --- */
+.footer {
+  background-color: var(--color-primary);
+  color: var(--color-dark);
+  padding: 4rem 5%;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  font-family: var(--font-body);
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+.footer-about h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--color-bg);
+  margin-bottom: 1rem;
+}
+
+.footer-links h4,
+.footer-newsletter h4 {
+  margin-bottom: 1rem;
+  color: var(--color-dark);
+  font-weight: 600;
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links a {
+  color: var(--color-dark);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--color-bg);
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+}
+
+.newsletter-form button {
+  background-color: var(--color-green);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* --- Dynamic Page Styles (Auth, Detail, Cart) --- */
+
+/* General Container for Auth/Cart/Checkout */
+.auth-container, .cart-page-container, .checkout-container {
+    padding: 6rem 5%;
+    display: flex;
+    justify-content: center;
+    min-height: 80vh;
+    background-color: var(--color-light);
+}
+
+/* Auth Box Styling (Login/Register) */
+.auth-box {
+    background: #fff;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow-soft);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.auth-box h2 {
+    font-family: var(--font-heading);
+    color: var(--color-dark);
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.error-message, .error-text {
+    color: var(--color-primary); 
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+/* Product Detail Page */
+.product-detail-container {
+    display: flex;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: flex-start;
+    padding: 4rem 5%;
+}
+
+.product-image-area {
+    flex: 1;
+}
+
+.product-image-area img {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+.product-info-area {
+    flex: 1;
+}
+
+.product-info-area h1 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.product-info-area .price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+}
+
+.product-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.quantity-selector input {
+    width: 80px;
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Cart Grid Styling */
+
+/* 1. Container for the 3x3 Grid */
+.cart-grid-container {
+    display: grid;
+    /* Sets up a 3-column layout. */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 30px; 
+    max-width: 1200px;
+    margin: 0 auto 3rem auto; 
+}
+
+/* 2. Styling for each individual cart item card */
+.cart-item-card {
+    background: #fff;
+    border: 1px solid var(--color-light);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.cart-item-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.item-link {
+    text-decoration: none;
+    color: var(--color-dark);
+}
+
+.item-image {
+    width: 100%;
+    height: 180px; 
+    object-fit: contain;
+    margin-bottom: 0.75rem;
+    border-radius: 8px;
+}
+
+.item-details {
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed var(--color-light);
+}
+
+.item-name {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark);
+}
+
+.item-quantity, .item-price {
+    font-size: 0.9rem;
+    margin: 0.2rem 0;
+}
+
+.item-subtotal {
+    padding-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-green);
+}
+
+/* 3. Updated Cart Summary Layout */
+.cart-summary-footer {
+    text-align: right;
+    padding: 1.5rem;
+    border-top: 2px solid var(--color-primary);
+    background: var(--color-light);
+    border-radius: 10px;
+    box-shadow: var(--shadow-soft);
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Adjust the main cart page container to full width to center elements */
+.cart-page-container {
+    padding: 6rem 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 80vh;
+    background-color: var(--color-bg);
+}
+
+/* Ensure the cart wrapper takes full width to center the grid */
+.cart-items-wrapper {
+    width: 100%; 
+    max-width: 1200px;
+}

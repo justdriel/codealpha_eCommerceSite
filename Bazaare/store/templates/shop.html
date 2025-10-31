@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Shop All Products{% endblock %}
+
+{% block content %}
+<section class="gallery">
+    <h1 style="text-align: center; width: 100%; margin-bottom: 3rem;">All Products</h1>
+
+    <div class="product-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <a href="{{ product.get_absolute_url }}">
+                {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% else %}
+                <img src="{% static 'assets/images/placeholder.png' %}" alt="{{ product.name }}">
+                {% endif %}
+            </a>
+            <div class="product-info">
+                <p>{{ product.name }}</p>
+                <span class="price">NGN {{ product.price|floatformat:0 }}</span>
+            </div>
+            <button class="btn-primary add-to-cart-btn" data-slug="{{ product.slug }}">Quick Add</button>
+        </div>
+        {% empty %}
+        <p>No products found in the shop.</p>
+        {% endfor %}
+    </div>
+
+    </section>
+{% endblock %}
+

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="hero-container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 id="hero-heading">Welcome to Bazaaré</h1>
+                <p id="hero-subtext">Your one-stop shop for Afro-modern market products.</p>
+                <a href="{% url 'shop' %}"><button class="btn-primary">Shop now</button></a>
+            </div>
+        </section>
+    </div>
+
+    <section class="featured">
+        <div class="featured-header">
+            <h1>Featured Products</h1>
+            <a href="{% url 'shop' %}"><button class="btn-primary">View All</button></a>
+        </div>
+        
+        <div class="featured-grid">
+            {% for product in featured_products %}
+            <div class="product-card">
+                <a href="{{ product.get_absolute_url }}">
+                    {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    {% else %}
+                    <img src="{% static 'assets/images/placeholder.png' %}" alt="{{ product.name }}">
+                    {% endif %}
+                </a>
+                <p>{{ product.name }}</p>
+                <p>NGN {{ product.price|floatformat:0 }}</p>
+                <button class="btn-primary add-to-cart-btn" data-slug="{{ product.slug }}">Add to Cart</button>
+            </div>
+            {% empty %}
+            <p>No featured products available yet. Please add some in the Django Admin.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="artisans">
+        <div class="artisan-container">
+            <div>
+                <h1>Meet the Artisans</h1>
+                <button class="btn-primary">View All</button>
+            </div>
+        </div>
+    </section>
+{% endblock %}

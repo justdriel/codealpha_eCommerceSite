@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Bazare | Afro-Modern Market{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header id="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <nav>
+                    <ul>
+                        <li><a href="{% url 'shop' %}">Shop</a></li>
+                        <li><a href="{% url 'about' %}">Our Story</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="logo"><a href="{% url 'index' %}">ɓαƶαα૨é</a></div>
+
+            <div class="nav-right">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="{% url 'cart' %}">
+                                <img src="{% static 'assets/icons/icons8-cart-25.png' %}" alt="Cart" class="cart-icon" />
+                            </a>
+                        </li>
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'logout' %}">Logout ({{ user.username }})</a></li>
+                        {% else %}
+                            <li><a href="{% url 'login' %}">Sign In</a></li>
+                        {% endif %}
+                        <li><a href="#"><button class="btn-primary">Contact Us</button></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-about">
+                <h3>ɓαƶαα૨é</h3>
+                <p>Celebrating Afro-modern design, sustainability, and community impact through ethical craftsmanship.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="{% url 'shop' %}">Shop</a></li>
+                    <li><a href="{% url 'about' %}">Our Story</a></li>
+                    <li><a href="#">Artisans</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Join our community</h4>
+                <p>Get updates on new collections, artisans, and projects.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            <div class="footer-socials">
+                <a href="#"><img src="{% static 'assets/icons/Instagram (1).svg' %}" alt="Instagram"></a>
+                <a href="#"><img src="{% static 'assets/icons/LinkedIn.svg' %}" alt="Linkedin"></a>
+                <a href="#"><img src="{% static 'assets/icons/Gmail.svg' %}" alt="Gmail"></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Bazaaré. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/cart.js' %}"></script>
+</body>
+</html>
